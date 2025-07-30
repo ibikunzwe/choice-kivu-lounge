@@ -14,13 +14,183 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      bookings: {
+        Row: {
+          booking_type: string
+          check_in: string
+          check_out: string
+          created_at: string
+          guest_email: string
+          guest_name: string
+          guest_phone: string | null
+          id: string
+          room_id: string
+          special_requests: string | null
+          status: string | null
+          total_cost: number
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          booking_type: string
+          check_in: string
+          check_out: string
+          created_at?: string
+          guest_email: string
+          guest_name: string
+          guest_phone?: string | null
+          id?: string
+          room_id: string
+          special_requests?: string | null
+          status?: string | null
+          total_cost: number
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          booking_type?: string
+          check_in?: string
+          check_out?: string
+          created_at?: string
+          guest_email?: string
+          guest_name?: string
+          guest_phone?: string | null
+          id?: string
+          room_id?: string
+          special_requests?: string | null
+          status?: string | null
+          total_cost?: number
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "bookings_room_id_fkey"
+            columns: ["room_id"]
+            isOneToOne: false
+            referencedRelation: "rooms"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      chat_messages: {
+        Row: {
+          created_at: string
+          guest_email: string | null
+          guest_name: string | null
+          id: string
+          is_from_support: boolean | null
+          message: string
+          user_id: string | null
+        }
+        Insert: {
+          created_at?: string
+          guest_email?: string | null
+          guest_name?: string | null
+          id?: string
+          is_from_support?: boolean | null
+          message: string
+          user_id?: string | null
+        }
+        Update: {
+          created_at?: string
+          guest_email?: string | null
+          guest_name?: string | null
+          id?: string
+          is_from_support?: boolean | null
+          message?: string
+          user_id?: string | null
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          created_at: string
+          email: string | null
+          full_name: string | null
+          id: string
+          phone: string | null
+          role: string | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          email?: string | null
+          full_name?: string | null
+          id?: string
+          phone?: string | null
+          role?: string | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          email?: string | null
+          full_name?: string | null
+          id?: string
+          phone?: string | null
+          role?: string | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      rooms: {
+        Row: {
+          amenities: string[] | null
+          capacity: number
+          created_at: string
+          daily_rate: number
+          description: string | null
+          hourly_rate: number
+          id: string
+          image_url: string | null
+          is_available: boolean | null
+          name: string
+          updated_at: string
+        }
+        Insert: {
+          amenities?: string[] | null
+          capacity: number
+          created_at?: string
+          daily_rate: number
+          description?: string | null
+          hourly_rate: number
+          id?: string
+          image_url?: string | null
+          is_available?: boolean | null
+          name: string
+          updated_at?: string
+        }
+        Update: {
+          amenities?: string[] | null
+          capacity?: number
+          created_at?: string
+          daily_rate?: number
+          description?: string | null
+          hourly_rate?: number
+          id?: string
+          image_url?: string | null
+          is_available?: boolean | null
+          name?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      check_room_availability: {
+        Args: {
+          room_id_param: string
+          check_in_param: string
+          check_out_param: string
+        }
+        Returns: boolean
+      }
     }
     Enums: {
       [_ in never]: never
