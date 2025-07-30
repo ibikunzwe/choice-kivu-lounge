@@ -2,9 +2,9 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { ArrowRight, Star, MapPin, Phone, Wifi, Car, Coffee, Waves, Users, Shield, CheckCircle } from "lucide-react";
 import { Link } from "react-router-dom";
-import heroImage from "@/assets/exterior-wide-view.jpg";
-import roomImage from "@/assets/building-exterior-stairs.jpg";
-import gardenImage from "@/assets/buildings-complex.jpg";
+const heroImage = "/images/exterior-wide-view.png";
+const roomImage = "/images/building-exterior-stairs.png";
+const gardenImage = "/images/buildings-complex.png";
 
 const Home = () => {
   const features = [
