@@ -1,266 +1,258 @@
-import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Heart, Award, Users, Leaf, ArrowRight } from "lucide-react";
-import { Link } from "react-router-dom";
+
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import { MapPin, Users, Award, Heart, Target, Eye } from 'lucide-react';
 
 const About = () => {
+  const teamMembers = [
+    {
+      name: "John Smith",
+      role: "General Manager",
+      description: "15+ years in hospitality management",
+      image: "/placeholder.svg"
+    },
+    {
+      name: "Sarah Johnson",
+      role: "Guest Relations Manager",
+      description: "Specialist in customer experience",
+      image: "/placeholder.svg"
+    },
+    {
+      name: "Michael Brown",
+      role: "Operations Director",
+      description: "Expert in hotel operations and efficiency",
+      image: "/placeholder.svg"
+    },
+    {
+      name: "Emma Davis",
+      role: "Head of Housekeeping",
+      description: "Ensuring the highest standards of cleanliness",
+      image: "/placeholder.svg"
+    }
+  ];
+
   const values = [
     {
-      icon: Heart,
-      title: "Hospitality Excellence",
-      description: "We believe in providing warm, personalized service that makes every guest feel at home while experiencing the beauty of Lake Kivu."
+      icon: <Heart className="h-8 w-8 text-red-500" />,
+      title: "Hospitality",
+      description: "We treat every guest as family, providing warm and personalized service"
     },
     {
-      icon: Award,
-      title: "Quality Standards",
-      description: "We maintain the highest standards of cleanliness, comfort, and luxury in all our accommodations and services."
+      icon: <Award className="h-8 w-8 text-yellow-500" />,
+      title: "Excellence",
+      description: "We strive for the highest standards in everything we do"
     },
     {
-      icon: Users,
-      title: "Guest-Centered Approach",
-      description: "Every decision we make is focused on enhancing our guests' experience and creating unforgettable memories."
-    },
-    {
-      icon: Leaf,
-      title: "Environmental Harmony",
-      description: "We're committed to preserving the natural beauty of Lake Kivu while providing sustainable luxury accommodations."
+      icon: <Users className="h-8 w-8 text-blue-500" />,
+      title: "Community",
+      description: "We're committed to supporting our local community and environment"
     }
-  ];
-
-  const team = [
-    {
-      name: "Jean Claude Uwimana",
-      role: "General Manager",
-      description: "With over 10 years in hospitality, Jean Claude ensures every guest receives exceptional service and experiences the true warmth of Rwandan hospitality.",
-      image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
-    },
-    {
-      name: "Grace Mukamana",
-      role: "Guest Relations Manager",
-      description: "Grace's attention to detail and genuine care for our guests ensures that every stay at Choice Lounge is comfortable and memorable.",
-      image: "https://images.unsplash.com/photo-1494790108755-2616b612b17c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
-    }
-  ];
-
-  const milestones = [
-    { year: "2019", event: "Choice Lounge established with a vision to create the perfect lakeside retreat" },
-    { year: "2020", event: "Expanded to include fully serviced apartments and enhanced garden areas" },
-    { year: "2021", event: "Achieved 95% guest satisfaction rating and became a preferred destination for Lake Kivu visitors" },
-    { year: "2022", event: "Introduced 24/7 concierge services and upgraded all rooms with modern amenities" },
-    { year: "2023", event: "Recognized as one of the top boutique accommodations in Rubavu District" },
-    { year: "2024", event: "Continuing to set new standards for luxury and comfort by Lake Kivu" }
   ];
 
   return (
     <div className="min-h-screen pt-16">
       {/* Hero Section */}
-      <section className="py-20 elegant-gradient">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-4xl mx-auto">
-            <h1 className="text-4xl md:text-6xl font-bold mb-6">
-              Our Story
-            </h1>
-            <p className="text-xl md:text-2xl text-muted-foreground mb-8 leading-relaxed">
-              Creating unforgettable experiences where comfort meets nature's beauty by the shores of Lake Kivu
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Mission & Vision */}
-      <section className="py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-20">
-            <div className="space-y-8">
-              <div>
-                <h2 className="text-3xl md:text-4xl font-bold mb-6 text-primary">Our Mission</h2>
-                <p className="text-lg text-muted-foreground leading-relaxed">
-                  To provide exceptional hospitality experiences that celebrate the natural beauty of Lake Kivu 
-                  while offering modern comfort and elegance. We strive to create a sanctuary where guests can 
-                  reconnect with nature, find peace, and create lasting memories in one of Rwanda's most 
-                  beautiful locations.
-                </p>
-              </div>
-              
-              <div>
-                <h2 className="text-3xl md:text-4xl font-bold mb-6 text-secondary">Our Vision</h2>
-                <p className="text-lg text-muted-foreground leading-relaxed">
-                  To be the premier boutique accommodation destination in the Lake Kivu region, recognized 
-                  for our commitment to sustainability, exceptional service, and creating transformative 
-                  experiences that connect guests with the natural splendor of Rwanda.
-                </p>
-              </div>
-            </div>
-
-            <div className="relative">
-              <img 
-                src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" 
-                alt="Lake Kivu scenic view" 
-                className="rounded-2xl shadow-elegant w-full h-96 object-cover"
-              />
-              <div className="absolute inset-0 hero-gradient opacity-20 rounded-2xl"></div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Values Section */}
-      <section className="py-20 elegant-gradient">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">Our Values</h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              The principles that guide everything we do at Choice Lounge
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {values.map((value, index) => (
-              <Card key={index} className="shadow-soft border-0 hover:shadow-elegant smooth-transition">
-                <CardContent className="p-8">
-                  <div className="flex items-start space-x-4">
-                    <div className="w-12 h-12 hero-gradient rounded-lg flex items-center justify-center flex-shrink-0">
-                      <value.icon className="w-6 h-6 text-white" />
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-semibold mb-3">{value.title}</h3>
-                      <p className="text-muted-foreground leading-relaxed">{value.description}</p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Team Section */}
-      <section className="py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">Meet Our Team</h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              The dedicated professionals who make your Choice Lounge experience exceptional
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-5xl mx-auto">
-            {team.map((member, index) => (
-              <Card key={index} className="shadow-elegant border-0 overflow-hidden">
-                <div className="aspect-square overflow-hidden">
-                  <img 
-                    src={member.image} 
-                    alt={member.name} 
-                    className="w-full h-full object-cover hover:scale-105 smooth-transition"
-                  />
-                </div>
-                <CardContent className="p-8 text-center">
-                  <h3 className="text-2xl font-bold mb-2">{member.name}</h3>
-                  <p className="text-primary font-medium mb-4">{member.role}</p>
-                  <p className="text-muted-foreground leading-relaxed">{member.description}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Journey Section */}
-      <section className="py-20 elegant-gradient">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">Our Journey</h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              From a simple vision to becoming a premier lakeside destination
-            </p>
-          </div>
-
-          <div className="space-y-8">
-            {milestones.map((milestone, index) => (
-              <div key={index} className="flex items-start space-x-6 group">
-                <div className="w-20 h-20 hero-gradient rounded-full flex items-center justify-center flex-shrink-0 group-hover:shadow-glow smooth-transition">
-                  <span className="text-white font-bold text-lg">{milestone.year}</span>
-                </div>
-                <div className="flex-1 pt-4">
-                  <Card className="shadow-soft border-0 group-hover:shadow-elegant smooth-transition">
-                    <CardContent className="p-6">
-                      <p className="text-lg leading-relaxed">{milestone.event}</p>
-                    </CardContent>
-                  </Card>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Experience Section */}
-      <section className="py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div>
-              <h2 className="text-3xl md:text-4xl font-bold mb-6">
-                The Choice Lounge Experience
-              </h2>
-              <div className="space-y-6 text-lg text-muted-foreground leading-relaxed">
-                <p>
-                  Located in the heart of Nyamyumba, just steps from Lake Kivu's pristine shores, 
-                  Choice Lounge represents the perfect harmony between modern luxury and natural beauty. 
-                  Our journey began with a simple belief: that exceptional hospitality comes from 
-                  genuine care and attention to detail.
-                </p>
-                <p>
-                  Every corner of our property has been thoughtfully designed to showcase the 
-                  breathtaking beauty of Lake Kivu while providing the comfort and amenities 
-                  today's travelers expect. From our elegantly appointed rooms to our lush garden 
-                  spaces, we've created an environment where guests can truly unwind and reconnect.
-                </p>
-                <p>
-                  Whether you're seeking a romantic getaway, a peaceful retreat, or a comfortable 
-                  base for exploring the Lake Kivu region, Choice Lounge offers an experience 
-                  that will leave you with memories to last a lifetime.
-                </p>
-              </div>
-            </div>
-            
-            <div className="relative">
-              <img 
-                src="https://images.unsplash.com/photo-1487958449943-2429e8be8625?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" 
-                alt="Choice Lounge building" 
-                className="rounded-2xl shadow-elegant"
-              />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-20 hero-gradient text-white">
-        <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">
-            Experience Our Story Yourself
-          </h2>
-          <p className="text-xl mb-8 opacity-90">
-            Join the many guests who have made Choice Lounge their preferred Lake Kivu destination
+      <div className="bg-gradient-to-r from-primary/10 to-primary/5 py-16">
+        <div className="max-w-4xl mx-auto px-4 text-center space-y-6">
+          <h1 className="text-4xl font-bold tracking-tight">About Hotel Booking</h1>
+          <p className="text-xl text-muted-foreground leading-relaxed">
+            For over two decades, we have been providing exceptional hospitality and 
+            creating memorable experiences for guests from around the world.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" variant="secondary" className="text-lg px-8 py-6">
-              Book Your Stay
-              <ArrowRight className="ml-2 w-5 h-5" />
-            </Button>
-            <Button 
-              size="lg" 
-              variant="outline" 
-              className="border-white text-white hover:bg-white hover:text-primary text-lg px-8 py-6"
-              asChild
-            >
-              <Link to="/contact">
-                Get in Touch
-              </Link>
-            </Button>
-          </div>
         </div>
-      </section>
+      </div>
+
+      <div className="max-w-6xl mx-auto px-4 py-16 space-y-16">
+        {/* Our Story */}
+        <section className="grid md:grid-cols-2 gap-12 items-center">
+          <div className="space-y-6">
+            <h2 className="text-3xl font-bold">Our Story</h2>
+            <div className="space-y-4 text-muted-foreground">
+              <p>
+                Founded in 2000, Hotel Booking began as a small family-owned establishment 
+                with a vision to provide guests with more than just accommodation – we wanted 
+                to create a home away from home.
+              </p>
+              <p>
+                Over the years, we've grown and evolved, but our core values remain unchanged. 
+                We believe that hospitality is an art, and every guest deserves to feel valued, 
+                comfortable, and cared for throughout their stay.
+              </p>
+              <p>
+                Today, we're proud to be a leading destination hotel, known for our exceptional 
+                service, beautiful accommodations, and commitment to sustainable tourism practices.
+              </p>
+            </div>
+          </div>
+          <div className="relative">
+            <img
+              src="/src/assets/reception-interior.jpg"
+              alt="Hotel reception"
+              className="rounded-lg shadow-lg w-full h-96 object-cover"
+            />
+          </div>
+        </section>
+
+        {/* Location */}
+        <section className="space-y-8">
+          <div className="text-center space-y-4">
+            <h2 className="text-3xl font-bold">Prime Location</h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              Strategically located with easy access to major attractions, 
+              business districts, and transportation hubs.
+            </p>
+          </div>
+          
+          <div className="grid md:grid-cols-2 gap-8">
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <MapPin className="h-5 w-5" />
+                  Location Details
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div>
+                  <h4 className="font-semibold mb-2">Address</h4>
+                  <p className="text-muted-foreground">
+                    123 Hospitality Avenue<br />
+                    City Center, State 12345<br />
+                    Country
+                  </p>
+                </div>
+                
+                <div>
+                  <h4 className="font-semibold mb-2">Nearby Attractions</h4>
+                  <ul className="space-y-1 text-muted-foreground">
+                    <li>• City Museum (0.5 km)</li>
+                    <li>• Central Park (0.8 km)</li>
+                    <li>• Shopping District (1.2 km)</li>
+                    <li>• Business Center (2.0 km)</li>
+                    <li>• Airport (15 km)</li>
+                  </ul>
+                </div>
+              </CardContent>
+            </Card>
+
+            <div className="bg-muted rounded-lg h-80 flex items-center justify-center">
+              <p className="text-muted-foreground">Interactive Map Integration</p>
+            </div>
+          </div>
+        </section>
+
+        {/* Mission & Vision */}
+        <section className="grid md:grid-cols-2 gap-8">
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Target className="h-5 w-5" />
+                Our Mission
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-muted-foreground">
+                To provide exceptional hospitality experiences that exceed our guests' 
+                expectations while contributing positively to our community and environment. 
+                We strive to create lasting memories through personalized service and 
+                attention to detail.
+              </p>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Eye className="h-5 w-5" />
+                Our Vision
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-muted-foreground">
+                To be the preferred choice for travelers seeking authentic, memorable, 
+                and sustainable hospitality experiences. We envision a future where 
+                our hotel serves as a model for responsible tourism and exceptional 
+                guest service.
+              </p>
+            </CardContent>
+          </Card>
+        </section>
+
+        {/* Values */}
+        <section className="space-y-8">
+          <div className="text-center space-y-4">
+            <h2 className="text-3xl font-bold">Our Values</h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              The principles that guide everything we do and define who we are as an organization.
+            </p>
+          </div>
+          
+          <div className="grid md:grid-cols-3 gap-6">
+            {values.map((value, index) => (
+              <Card key={index} className="text-center">
+                <CardHeader>
+                  <div className="mx-auto mb-4">
+                    {value.icon}
+                  </div>
+                  <CardTitle>{value.title}</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-muted-foreground">{value.description}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </section>
+
+        {/* Team */}
+        <section className="space-y-8">
+          <div className="text-center space-y-4">
+            <h2 className="text-3xl font-bold">Meet Our Team</h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              Our dedicated team of hospitality professionals is committed to 
+              making your stay exceptional.
+            </p>
+          </div>
+          
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {teamMembers.map((member, index) => (
+              <Card key={index} className="text-center">
+                <CardHeader>
+                  <div className="w-24 h-24 rounded-full bg-muted mx-auto mb-4 flex items-center justify-center">
+                    <Users className="h-12 w-12 text-muted-foreground" />
+                  </div>
+                  <CardTitle className="text-lg">{member.name}</CardTitle>
+                  <Badge variant="secondary">{member.role}</Badge>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-sm text-muted-foreground">{member.description}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </section>
+
+        {/* Stats */}
+        <section className="bg-muted rounded-lg p-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+            <div>
+              <div className="text-3xl font-bold text-primary mb-2">25+</div>
+              <div className="text-muted-foreground">Years of Excellence</div>
+            </div>
+            <div>
+              <div className="text-3xl font-bold text-primary mb-2">50+</div>
+              <div className="text-muted-foreground">Rooms & Suites</div>
+            </div>
+            <div>
+              <div className="text-3xl font-bold text-primary mb-2">10K+</div>
+              <div className="text-muted-foreground">Happy Guests</div>
+            </div>
+            <div>
+              <div className="text-3xl font-bold text-primary mb-2">4.8</div>
+              <div className="text-muted-foreground">Average Rating</div>
+            </div>
+          </div>
+        </section>
+      </div>
     </div>
   );
 };
