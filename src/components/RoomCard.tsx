@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Users, Wifi, Car, Coffee, Bath } from 'lucide-react';
+import { Users, Wifi, Car, Coffee, Bath, MessageCircle } from 'lucide-react';
 import { BookingModal } from './BookingModal';
 
 interface Room {
@@ -40,6 +40,13 @@ export const RoomCard = ({ room }: RoomCardProps) => {
       default:
         return null;
     }
+  };
+
+  const handleWhatsAppContact = () => {
+    const message = `Hi! I'm interested in booking ${room.name}. Can we discuss pricing?`;
+    const phoneNumber = '+250788123456'; // Replace with actual WhatsApp number
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, '_blank');
   };
 
   return (
@@ -83,22 +90,37 @@ export const RoomCard = ({ room }: RoomCardProps) => {
           <div className="space-y-1">
             <div className="flex justify-between">
               <span className="text-sm">Daily Rate:</span>
-              <span className="font-semibold">${room.daily_rate}</span>
+              <div className="text-right">
+                <span className="font-semibold">${room.daily_rate}</span>
+                <Badge variant="outline" className="ml-2 text-xs">Negotiable</Badge>
+              </div>
             </div>
             <div className="flex justify-between">
               <span className="text-sm">Hourly Rate:</span>
-              <span className="font-semibold">${room.hourly_rate}</span>
+              <div className="text-right">
+                <span className="font-semibold">${room.hourly_rate}</span>
+                <Badge variant="outline" className="ml-2 text-xs">Negotiable</Badge>
+              </div>
             </div>
           </div>
         </CardContent>
         
-        <CardFooter>
+        <CardFooter className="flex gap-2">
           <Button 
-            className="w-full" 
+            className="flex-1" 
             disabled={!room.is_available}
             onClick={() => setShowBooking(true)}
           >
             {room.is_available ? 'Book Now' : 'Unavailable'}
+          </Button>
+          <Button 
+            variant="outline" 
+            size="sm"
+            onClick={handleWhatsAppContact}
+            className="flex items-center gap-1"
+          >
+            <MessageCircle className="h-4 w-4" />
+            WhatsApp
           </Button>
         </CardFooter>
       </Card>

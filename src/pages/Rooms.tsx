@@ -7,9 +7,10 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Skeleton } from '@/components/ui/skeleton';
-import { Search, Filter, Users, DollarSign } from 'lucide-react';
+import { Search, Filter, Users, DollarSign, MessageCircle } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
+import { roomsData } from '@/data/roomsData';
 
 interface Room {
   id: string;
@@ -34,28 +35,41 @@ const Rooms = () => {
   const { toast } = useToast();
 
   useEffect(() => {
-    fetchRooms();
+    initializeRooms();
   }, []);
 
   useEffect(() => {
     filterRooms();
   }, [rooms, searchQuery, capacityFilter, priceFilter, availabilityFilter]);
 
-  const fetchRooms = async () => {
+  const initializeRooms = async () => {
     try {
+      // First try to get rooms from database
       const { data, error } = await supabase
         .from('rooms')
         .select('*')
         .order('name');
 
       if (error) throw error;
-      setRooms(data || []);
+
+      if (data && data.length > 0) {
+        setRooms(data);
+      } else {
+        // If no rooms in database, use the local data
+        setRooms(roomsData);
+        
+        // Optionally insert the rooms data into the database
+        const { error: insertError } = await supabase
+          .from('rooms')
+          .insert(roomsData);
+        
+        if (insertError) {
+          console.log('Note: Could not save rooms to database, using local data');
+        }
+      }
     } catch (error) {
-      toast({
-        title: "Error loading rooms",
-        description: "There was an error loading the rooms. Please try again.",
-        variant: "destructive",
-      });
+      console.log('Using local rooms data');
+      setRooms(roomsData);
     } finally {
       setLoading(false);
     }
@@ -106,6 +120,13 @@ const Rooms = () => {
     setAvailabilityFilter('all');
   };
 
+  const handleWhatsAppGeneral = () => {
+    const message = 'Hi! I would like to inquire about your rooms and pricing. All prices are negotiable, right?';
+    const phoneNumber = '+250788123456'; // Replace with actual WhatsApp number
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, '_blank');
+  };
+
   if (loading) {
     return (
       <div className="min-h-screen pt-16 p-8">
@@ -145,8 +166,12 @@ const Rooms = () => {
             <h1 className="text-4xl font-bold tracking-tight">Our Rooms & Suites</h1>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
               Discover comfort and luxury in our carefully designed accommodations.
-              Each room offers modern amenities and stunning views.
+              Each room offers modern amenities and stunning views. All prices are negotiable!
             </p>
+            <Button onClick={handleWhatsAppGeneral} className="mt-4">
+              <MessageCircle className="h-4 w-4 mr-2" />
+              Contact us on WhatsApp for Pricing
+            </Button>
           </div>
         </div>
       </div>
@@ -218,6 +243,9 @@ const Rooms = () => {
                 {(searchQuery || capacityFilter !== 'all' || priceFilter !== 'all' || availabilityFilter !== 'all') && (
                   <Badge variant="secondary">Filtered</Badge>
                 )}
+                <Badge variant="outline" className="bg-green-50 text-green-700 border-green-200">
+                  All Prices Negotiable
+                </Badge>
               </div>
               <Button variant="outline" size="sm" onClick={clearFilters}>
                 Clear Filters

@@ -9,11 +9,12 @@ import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Calendar } from '@/components/ui/calendar';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { format } from 'date-fns';
-import { CalendarIcon } from 'lucide-react';
+import { CalendarIcon, MessageCircle } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { supabase } from '@/integrations/supabase/client';
 import { useAuth } from '@/hooks/useAuth';
 import { useToast } from '@/hooks/use-toast';
+import { WhatsAppButton } from './WhatsAppButton';
 
 interface Room {
   id: string;
@@ -64,50 +65,77 @@ export const BookingModal = ({ room, open, onOpenChange }: BookingModalProps) =>
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!user) return;
     
+    // Validate required fields
+    if (!bookingData.checkIn || !bookingData.checkOut) {
+      toast({
+        title: "Missing Information",
+        description: "Please select check-in and check-out dates.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    if (!bookingData.guestName || !bookingData.guestEmail) {
+      toast({
+        title: "Missing Information", 
+        description: "Please provide guest name and email.",
+        variant: "destructive",
+      });
+      return;
+    }
+
     setLoading(true);
     
     try {
-      // Check room availability
-      const { data: isAvailable } = await supabase
-        .rpc('check_room_availability', {
-          room_id_param: room.id,
-          check_in_param: bookingData.checkIn?.toISOString(),
-          check_out_param: bookingData.checkOut?.toISOString(),
+      // If user is logged in, try to save to database
+      if (user) {
+        // Check room availability
+        const { data: isAvailable } = await supabase
+          .rpc('check_room_availability', {
+            room_id_param: room.id,
+            check_in_param: bookingData.checkIn?.toISOString(),
+            check_out_param: bookingData.checkOut?.toISOString(),
+          });
+
+        if (!isAvailable) {
+          toast({
+            title: "Room Unavailable",
+            description: "This room is not available for the selected dates.",
+            variant: "destructive",
+          });
+          setLoading(false);
+          return;
+        }
+
+        // Create booking in database
+        const { error } = await supabase.from('bookings').insert({
+          user_id: user.id,
+          room_id: room.id,
+          booking_type: bookingData.bookingType,
+          check_in: bookingData.checkIn?.toISOString(),
+          check_out: bookingData.checkOut?.toISOString(),
+          guest_name: bookingData.guestName,
+          guest_email: bookingData.guestEmail,
+          guest_phone: bookingData.guestPhone,
+          special_requests: bookingData.specialRequests,
+          total_cost: calculateTotal(),
+          status: 'pending',
         });
 
-      if (!isAvailable) {
+        if (error) throw error;
+
         toast({
-          title: "Room Unavailable",
-          description: "This room is not available for the selected dates.",
-          variant: "destructive",
+          title: "Booking Created!",
+          description: "Your booking has been successfully created and is pending confirmation.",
         });
-        setLoading(false);
-        return;
+      } else {
+        // For guests without account, show success message and suggest WhatsApp contact
+        toast({
+          title: "Booking Request Received!",
+          description: "Please contact us via WhatsApp to confirm your booking.",
+        });
       }
-
-      // Create booking
-      const { error } = await supabase.from('bookings').insert({
-        user_id: user.id,
-        room_id: room.id,
-        booking_type: bookingData.bookingType,
-        check_in: bookingData.checkIn?.toISOString(),
-        check_out: bookingData.checkOut?.toISOString(),
-        guest_name: bookingData.guestName,
-        guest_email: bookingData.guestEmail,
-        guest_phone: bookingData.guestPhone,
-        special_requests: bookingData.specialRequests,
-        total_cost: calculateTotal(),
-        status: 'pending',
-      });
-
-      if (error) throw error;
-
-      toast({
-        title: "Booking Created!",
-        description: "Your booking has been successfully created and is pending confirmation.",
-      });
 
       onOpenChange(false);
       setBookingData({
@@ -120,14 +148,36 @@ export const BookingModal = ({ room, open, onOpenChange }: BookingModalProps) =>
         specialRequests: '',
       });
     } catch (error) {
+      console.error('Booking error:', error);
       toast({
         title: "Booking Failed",
-        description: "There was an error creating your booking. Please try again.",
+        description: "There was an error creating your booking. Please try contacting us via WhatsApp.",
         variant: "destructive",
       });
     }
     
     setLoading(false);
+  };
+
+  const getWhatsAppMessage = () => {
+    const checkInStr = bookingData.checkIn ? format(bookingData.checkIn, 'PPP') : 'Not selected';
+    const checkOutStr = bookingData.checkOut ? format(bookingData.checkOut, 'PPP') : 'Not selected';
+    const total = calculateTotal();
+    
+    return `Hi! I'd like to book ${room.name}.
+    
+Details:
+- Room: ${room.name}
+- Check-in: ${checkInStr}
+- Check-out: ${checkOutStr}
+- Booking Type: ${bookingData.bookingType}
+- Guest Name: ${bookingData.guestName || 'Not provided'}
+- Email: ${bookingData.guestEmail || 'Not provided'}
+- Phone: ${bookingData.guestPhone || 'Not provided'}
+- Estimated Total: $${total} (negotiable)
+- Special Requests: ${bookingData.specialRequests || 'None'}
+
+Please confirm availability and final pricing. Thank you!`;
   };
 
   return (
@@ -148,11 +198,11 @@ export const BookingModal = ({ room, open, onOpenChange }: BookingModalProps) =>
               >
                 <div className="flex items-center space-x-2">
                   <RadioGroupItem value="daily" id="daily" />
-                  <Label htmlFor="daily">Daily (${room.daily_rate}/day)</Label>
+                  <Label htmlFor="daily">Daily (${room.daily_rate}/day - Negotiable)</Label>
                 </div>
                 <div className="flex items-center space-x-2">
                   <RadioGroupItem value="hourly" id="hourly" />
-                  <Label htmlFor="hourly">Hourly (${room.hourly_rate}/hour)</Label>
+                  <Label htmlFor="hourly">Hourly (${room.hourly_rate}/hour - Negotiable)</Label>
                 </div>
               </RadioGroup>
             </div>
@@ -260,8 +310,11 @@ export const BookingModal = ({ room, open, onOpenChange }: BookingModalProps) =>
           {bookingData.checkIn && bookingData.checkOut && (
             <div className="border-t pt-4">
               <div className="flex justify-between items-center text-lg font-semibold">
-                <span>Total Cost:</span>
-                <span>${calculateTotal()}</span>
+                <span>Estimated Total:</span>
+                <div className="text-right">
+                  <span>${calculateTotal()}</span>
+                  <p className="text-sm text-muted-foreground font-normal">Prices are negotiable</p>
+                </div>
               </div>
             </div>
           )}
@@ -282,6 +335,17 @@ export const BookingModal = ({ room, open, onOpenChange }: BookingModalProps) =>
             >
               {loading ? "Creating Booking..." : "Create Booking"}
             </Button>
+          </div>
+
+          <div className="border-t pt-4">
+            <p className="text-sm text-muted-foreground mb-3">
+              Prefer to book via WhatsApp? Contact us directly:
+            </p>
+            <WhatsAppButton 
+              message={getWhatsAppMessage()}
+              variant="outline"
+              className="w-full bg-green-50 hover:bg-green-100 text-green-700 border-green-200"
+            />
           </div>
         </form>
       </DialogContent>
