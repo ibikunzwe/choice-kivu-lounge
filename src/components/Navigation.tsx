@@ -28,7 +28,7 @@ const Navigation = () => {
   ];
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <header className="sticky top-0 z-40 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container mx-auto px-4 flex h-16 items-center justify-between">
         {/* Logo */}
         <Link to="/" className="flex items-center space-x-2">
@@ -36,8 +36,8 @@ const Navigation = () => {
           <span className="font-bold text-xl">Hotel Booking</span>
         </Link>
 
-        {/* Desktop Navigation */}
-        <NavigationMenu className="hidden md:flex">
+        {/* Desktop Navigation - Hide on mobile as we have bottom nav */}
+        <NavigationMenu className="hidden lg:flex">
           <NavigationMenuList>
             {navigationItems.map((item) => (
               <NavigationMenuItem key={item.name}>
@@ -62,8 +62,8 @@ const Navigation = () => {
           {user ? (
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="ghost" className="relative h-8 w-8 rounded-full">
-                  <Avatar className="h-8 w-8">
+                <Button variant="ghost" className="relative h-10 w-10 rounded-full">
+                  <Avatar className="h-10 w-10">
                     <AvatarFallback>
                       {user.user_metadata?.full_name?.charAt(0) || user.email?.charAt(0) || 'U'}
                     </AvatarFallback>
@@ -103,46 +103,52 @@ const Navigation = () => {
             <AuthModal />
           )}
 
-          {/* Mobile Menu */}
+          {/* Mobile Menu - Simplified for better UX */}
           <Sheet open={isOpen} onOpenChange={setIsOpen}>
             <SheetTrigger asChild>
-              <Button variant="outline" size="icon" className="md:hidden">
+              <Button variant="outline" size="icon" className="lg:hidden">
                 <Menu className="h-5 w-5" />
               </Button>
             </SheetTrigger>
             <SheetContent side="right" className="w-80">
-              <div className="flex flex-col gap-4 mt-8">
-                {navigationItems.map((item) => (
-                  <Link
-                    key={item.name}
-                    to={item.href}
-                    onClick={() => setIsOpen(false)}
-                    className={cn(
-                      "text-lg font-medium transition-colors hover:text-primary",
-                      isActive(item.href) ? "text-primary" : "text-muted-foreground"
-                    )}
-                  >
-                    {item.name}
-                  </Link>
-                ))}
+              <div className="flex flex-col gap-6 mt-8">
+                <div className="space-y-4">
+                  {navigationItems.map((item) => (
+                    <Link
+                      key={item.name}
+                      to={item.href}
+                      onClick={() => setIsOpen(false)}
+                      className={cn(
+                        "block px-4 py-3 text-lg font-medium rounded-lg transition-colors",
+                        isActive(item.href) 
+                          ? "bg-primary text-primary-foreground" 
+                          : "text-muted-foreground hover:text-foreground hover:bg-muted"
+                      )}
+                    >
+                      {item.name}
+                    </Link>
+                  ))}
+                </div>
                 
                 {user && (
                   <>
                     <hr className="my-4" />
-                    <Link
-                      to="/profile"
-                      onClick={() => setIsOpen(false)}
-                      className="text-lg font-medium text-muted-foreground hover:text-primary"
-                    >
-                      Profile
-                    </Link>
-                    <Link
-                      to="/bookings"
-                      onClick={() => setIsOpen(false)}
-                      className="text-lg font-medium text-muted-foreground hover:text-primary"
-                    >
-                      My Bookings
-                    </Link>
+                    <div className="space-y-4">
+                      <Link
+                        to="/profile"
+                        onClick={() => setIsOpen(false)}
+                        className="block px-4 py-3 text-lg font-medium text-muted-foreground hover:text-foreground hover:bg-muted rounded-lg transition-colors"
+                      >
+                        Profile
+                      </Link>
+                      <Link
+                        to="/bookings"
+                        onClick={() => setIsOpen(false)}
+                        className="block px-4 py-3 text-lg font-medium text-muted-foreground hover:text-foreground hover:bg-muted rounded-lg transition-colors"
+                      >
+                        My Bookings
+                      </Link>
+                    </div>
                   </>
                 )}
               </div>

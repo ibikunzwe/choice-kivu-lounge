@@ -4,7 +4,9 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/componen
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Users, Wifi, Car, Coffee, Bath, MessageCircle } from 'lucide-react';
-import { BookingModal } from './BookingModal';
+import { MobileBookingModal } from './MobileBookingModal';
+import { ProgressiveImage } from './ProgressiveImage';
+import { MobileTouchButton } from './MobileOptimizedCard';
 
 interface Room {
   id: string;
@@ -51,9 +53,9 @@ export const RoomCard = ({ room }: RoomCardProps) => {
 
   return (
     <>
-      <Card className="overflow-hidden hover:shadow-lg transition-shadow">
+      <Card className="overflow-hidden hover:shadow-lg transition-all duration-300 touch-manipulation">
         <div className="aspect-video relative">
-          <img
+          <ProgressiveImage
             src={room.image_url || '/placeholder.svg'}
             alt={room.name}
             className="w-full h-full object-cover"
@@ -65,8 +67,8 @@ export const RoomCard = ({ room }: RoomCardProps) => {
           </div>
         </div>
         
-        <CardHeader>
-          <CardTitle className="flex items-center justify-between">
+        <CardHeader className="pb-3">
+          <CardTitle className="flex items-center justify-between text-lg">
             {room.name}
             <div className="flex items-center text-sm text-muted-foreground">
               <Users className="h-4 w-4 mr-1" />
@@ -75,57 +77,57 @@ export const RoomCard = ({ room }: RoomCardProps) => {
           </CardTitle>
         </CardHeader>
         
-        <CardContent className="space-y-4">
-          <p className="text-sm text-muted-foreground">{room.description}</p>
+        <CardContent className="space-y-4 pb-4">
+          <p className="text-sm text-muted-foreground line-clamp-2">{room.description}</p>
           
           <div className="flex flex-wrap gap-2">
             {room.amenities.map((amenity) => (
-              <div key={amenity} className="flex items-center gap-1 text-xs bg-muted px-2 py-1 rounded">
+              <div key={amenity} className="flex items-center gap-1 text-xs bg-muted px-2 py-1 rounded-full">
                 {getAmenityIcon(amenity)}
                 {amenity}
               </div>
             ))}
           </div>
           
-          <div className="space-y-1">
-            <div className="flex justify-between">
-              <span className="text-sm">Daily Rate:</span>
+          <div className="space-y-2">
+            <div className="flex justify-between items-center">
+              <span className="text-sm font-medium">Daily Rate:</span>
               <div className="text-right">
-                <span className="font-semibold">${room.daily_rate}</span>
+                <span className="font-bold text-lg">${room.daily_rate}</span>
                 <Badge variant="outline" className="ml-2 text-xs">Negotiable</Badge>
               </div>
             </div>
-            <div className="flex justify-between">
-              <span className="text-sm">Hourly Rate:</span>
+            <div className="flex justify-between items-center">
+              <span className="text-sm font-medium">Hourly Rate:</span>
               <div className="text-right">
-                <span className="font-semibold">${room.hourly_rate}</span>
+                <span className="font-bold text-lg">${room.hourly_rate}</span>
                 <Badge variant="outline" className="ml-2 text-xs">Negotiable</Badge>
               </div>
             </div>
           </div>
         </CardContent>
         
-        <CardFooter className="flex gap-2">
-          <Button 
+        <CardFooter className="flex gap-2 pt-0">
+          <MobileTouchButton 
             className="flex-1" 
             disabled={!room.is_available}
             onClick={() => setShowBooking(true)}
           >
             {room.is_available ? 'Book Now' : 'Unavailable'}
-          </Button>
-          <Button 
+          </MobileTouchButton>
+          <MobileTouchButton 
             variant="outline" 
             size="sm"
             onClick={handleWhatsAppContact}
-            className="flex items-center gap-1"
+            className="flex items-center gap-1 bg-green-50 hover:bg-green-100 text-green-700 border-green-200"
           >
             <MessageCircle className="h-4 w-4" />
-            WhatsApp
-          </Button>
+            <span className="hidden sm:inline">WhatsApp</span>
+          </MobileTouchButton>
         </CardFooter>
       </Card>
 
-      <BookingModal 
+      <MobileBookingModal 
         room={room}
         open={showBooking}
         onOpenChange={setShowBooking}

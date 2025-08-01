@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -19,6 +18,7 @@ import Contact from "./pages/Contact";
 import Profile from "./pages/Profile";
 import Bookings from "./pages/Bookings";
 import NotFound from "./pages/NotFound";
+import { MobileBottomNav } from "./components/MobileBottomNav";
 
 const queryClient = new QueryClient();
 
@@ -29,7 +29,7 @@ const App = () => (
         <Toaster />
         <Sonner />
         <BrowserRouter>
-          <div className="min-h-screen flex flex-col">
+          <div className="min-h-screen flex flex-col pb-16 md:pb-0">
             <Navigation />
             <main className="flex-1">
               <Routes>
@@ -48,6 +48,7 @@ const App = () => (
             <Footer />
             <ChatSupport />
             <FloatingWhatsApp />
+            <MobileBottomNav />
           </div>
         </BrowserRouter>
       </TooltipProvider>
