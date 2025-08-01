@@ -6,7 +6,7 @@ import {
   Wifi, 
   Car, 
   Coffee, 
-  Utensils, 
+  Wine, 
   Dumbbell, 
   Waves, 
   Shirt, 
@@ -16,7 +16,9 @@ import {
   Users,
   Calendar,
   Shield,
-  Headphones
+  Headphones,
+  GlassWater,
+  Sparkles
 } from 'lucide-react';
 
 const Services = () => {
@@ -24,7 +26,7 @@ const Services = () => {
     {
       icon: <Wifi className="h-6 w-6" />,
       title: "Free Wi-Fi",
-      description: "High-speed internet access throughout the hotel",
+      description: "High-speed internet access throughout Choice Lounge",
       included: true,
       price: "Complimentary"
     },
@@ -37,17 +39,17 @@ const Services = () => {
     },
     {
       icon: <Coffee className="h-6 w-6" />,
-      title: "Room Service",
-      description: "24/7 in-room dining service",
+      title: "Beverage Service",
+      description: "Premium coffee, tea, and refreshments delivered to your room",
       included: false,
       price: "À la carte pricing"
     },
     {
-      icon: <Utensils className="h-6 w-6" />,
-      title: "Restaurant",
-      description: "Fine dining experience with local and international cuisine",
+      icon: <GlassWater className="h-6 w-6" />,
+      title: "Minibar",
+      description: "Curated selection of beverages and snacks in every room",
       included: false,
-      price: "Menu pricing"
+      price: "Per consumption"
     },
     {
       icon: <Shirt className="h-6 w-6" />,
@@ -65,27 +67,34 @@ const Services = () => {
     }
   ];
 
-  const additionalServices = [
+  const beverageServices = [
     {
-      icon: <Users className="h-6 w-6" />,
-      title: "Event Spaces",
-      description: "Professional meeting rooms and event venues for conferences, weddings, and special occasions",
-      features: ["Audio/Visual Equipment", "Catering Services", "Event Planning", "Flexible Layouts"],
-      pricing: "Starting from $200/day"
+      icon: <Coffee className="h-6 w-6" />,
+      title: "Premium Coffee & Tea",
+      description: "Artisan coffee blends and premium tea selections",
+      features: ["Ethiopian Coffee", "English Breakfast Tea", "Herbal Infusions", "Espresso & Cappuccino"],
+      pricing: "Starting from $3"
     },
     {
-      icon: <Calendar className="h-6 w-6" />,
-      title: "Tour Packages",
-      description: "Curated local experiences and sightseeing tours",
-      features: ["City Tours", "Cultural Experiences", "Adventure Activities", "Transportation"],
-      pricing: "From $50/person"
+      icon: <GlassWater className="h-6 w-6" />,
+      title: "Fresh Juices & Smoothies",
+      description: "Locally sourced fruits turned into refreshing beverages",
+      features: ["Tropical Fruit Juices", "Green Smoothies", "Fresh Squeezed Orange", "Seasonal Specials"],
+      pricing: "From $4"
     },
     {
-      icon: <Shield className="h-6 w-6" />,
-      title: "Airport Transfer",
-      description: "Comfortable and reliable airport pickup and drop-off service",
-      features: ["Professional Drivers", "Luxury Vehicles", "Flight Monitoring", "24/7 Availability"],
-      pricing: "$35 one-way"
+      icon: <Wine className="h-6 w-6" />,
+      title: "Soft Drinks & Water",
+      description: "Refreshing beverages to keep you hydrated",
+      features: ["Local Spring Water", "International Sodas", "Energy Drinks", "Sparkling Water"],
+      pricing: "$2 - $5"
+    },
+    {
+      icon: <Sparkles className="h-6 w-6" />,
+      title: "Special Beverage Packages",
+      description: "Curated beverage experiences for your stay",
+      features: ["Welcome Drink Package", "All-Day Coffee Package", "Healthy Juice Cleanse", "Custom Combinations"],
+      pricing: "From $15/day"
     }
   ];
 
@@ -100,7 +109,7 @@ const Services = () => {
 
   const operatingHours = [
     { service: "Front Desk", hours: "24/7" },
-    { service: "Restaurant", hours: "6:00 AM - 11:00 PM" },
+    { service: "Beverage Service", hours: "6:00 AM - 11:00 PM" },
     { service: "Room Service", hours: "24/7" },
     { service: "Business Center", hours: "6:00 AM - 10:00 PM" },
     { service: "Concierge", hours: "7:00 AM - 11:00 PM" },
@@ -112,10 +121,10 @@ const Services = () => {
       {/* Hero Section */}
       <div className="bg-gradient-to-r from-primary/10 to-primary/5 py-16">
         <div className="max-w-4xl mx-auto px-4 text-center space-y-6">
-          <h1 className="text-4xl font-bold tracking-tight">Hotel Services & Amenities</h1>
+          <h1 className="text-4xl font-bold tracking-tight">Choice Lounge Services</h1>
           <p className="text-xl text-muted-foreground leading-relaxed">
             Experience our comprehensive range of services designed to make your stay 
-            comfortable, convenient, and memorable.
+            comfortable, convenient, and memorable. Specializing in premium beverage service.
           </p>
         </div>
       </div>
@@ -124,15 +133,15 @@ const Services = () => {
         {/* Core Hotel Services */}
         <section className="space-y-8">
           <div className="text-center space-y-4">
-            <h2 className="text-3xl font-bold">Core Hotel Services</h2>
+            <h2 className="text-3xl font-bold">Core Services</h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              Essential services and amenities available to all our guests
+              Essential services and amenities available to all Choice Lounge guests
             </p>
           </div>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {hotelServices.map((service, index) => (
-              <Card key={index} className="relative">
+              <Card key={index} className="relative hover:shadow-lg transition-shadow">
                 <CardHeader>
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-3">
@@ -157,18 +166,18 @@ const Services = () => {
           </div>
         </section>
 
-        {/* Additional Services */}
+        {/* Beverage Services */}
         <section className="space-y-8">
           <div className="text-center space-y-4">
-            <h2 className="text-3xl font-bold">Additional Services</h2>
+            <h2 className="text-3xl font-bold">Premium Beverage Services</h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              Premium services to enhance your stay experience
+              Our specialty - curated beverage experiences for room occupants
             </p>
           </div>
           
-          <div className="grid lg:grid-cols-3 gap-6">
-            {additionalServices.map((service, index) => (
-              <Card key={index} className="h-full">
+          <div className="grid lg:grid-cols-2 gap-6">
+            {beverageServices.map((service, index) => (
+              <Card key={index} className="h-full hover:shadow-lg transition-shadow">
                 <CardHeader>
                   <div className="flex items-center gap-3 mb-2">
                     <div className="p-2 rounded-lg bg-primary/10 text-primary">
@@ -180,7 +189,7 @@ const Services = () => {
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div>
-                    <h4 className="font-semibold mb-2">Features:</h4>
+                    <h4 className="font-semibold mb-2">Available Options:</h4>
                     <ul className="space-y-1">
                       {service.features.map((feature, featureIndex) => (
                         <li key={featureIndex} className="text-sm text-muted-foreground flex items-center">
@@ -192,6 +201,7 @@ const Services = () => {
                   </div>
                   <div className="pt-2 border-t">
                     <span className="font-semibold text-primary">{service.pricing}</span>
+                    <Badge variant="outline" className="ml-2 text-xs">Negotiable</Badge>
                   </div>
                 </CardContent>
               </Card>
@@ -248,7 +258,7 @@ const Services = () => {
           <div className="text-center space-y-4">
             <h2 className="text-3xl font-bold">Service Hours</h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              Operating hours for all our services and facilities
+              Operating hours for all Choice Lounge services and facilities
             </p>
           </div>
           
@@ -256,7 +266,7 @@ const Services = () => {
             <CardContent className="p-6">
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {operatingHours.map((item, index) => (
-                  <div key={index} className="flex justify-between items-center p-3 bg-muted rounded-lg">
+                  <div key={index} className="flex justify-between items-center p-3 bg-muted/50 rounded-lg">
                     <span className="font-medium">{item.service}</span>
                     <Badge variant="outline">{item.hours}</Badge>
                   </div>
@@ -268,23 +278,23 @@ const Services = () => {
 
         {/* Contact for Services */}
         <section className="bg-primary/5 rounded-lg p-8 text-center space-y-6">
-          <h2 className="text-2xl font-bold">Need Additional Services?</h2>
+          <h2 className="text-2xl font-bold">Need Custom Beverage Service?</h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Our concierge team is available to help you with special requests, 
-            local recommendations, and custom service arrangements.
+            Our beverage specialists are available to help you with special requests, 
+            custom drink combinations, and personalized service arrangements.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button size="lg">
               <Phone className="mr-2 h-4 w-4" />
-              Call Concierge
+              Call Beverage Service
             </Button>
             <Button variant="outline" size="lg">
               <Headphones className="mr-2 h-4 w-4" />
-              Chat with Us
+              Chat with Concierge
             </Button>
           </div>
           <div className="text-sm text-muted-foreground">
-            Concierge available: 7:00 AM - 11:00 PM daily
+            Beverage service available: 6:00 AM - 11:00 PM daily
           </div>
         </section>
       </div>
