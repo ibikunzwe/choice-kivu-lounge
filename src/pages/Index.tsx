@@ -444,17 +444,15 @@ const Index = () => {
             Watch our full tour of Choice Lounge and see why guests love staying here!
           </p>
           
-          <div className="relative aspect-video rounded-2xl overflow-hidden bg-muted group cursor-pointer" onClick={handleVirtualTour}>
-            <ProgressiveImage
-              src="/lovable-uploads/3aeadc2f-a09c-47c0-94ab-86198e1ec8ab.png"
-              alt="Choice Lounge Video Tour"
-              className="w-full h-full object-cover"
+          <div className="relative aspect-video rounded-2xl overflow-hidden bg-muted shadow-2xl">
+            <iframe
+              src="https://www.youtube.com/embed/6et5sceskes"
+              title="Choice Lounge Video Tour"
+              className="w-full h-full"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowFullScreen
             />
-            <div className="absolute inset-0 bg-black/40 group-hover:bg-black/30 transition-colors flex items-center justify-center">
-              <div className="w-20 h-20 bg-white/90 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
-                <Play className="h-8 w-8 text-primary ml-1" />
-              </div>
-            </div>
           </div>
         </div>
       </section>
