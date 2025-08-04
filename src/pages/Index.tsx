@@ -27,19 +27,20 @@ import {
   Instagram
 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious, type CarouselApi } from '@/components/ui/carousel';
 import { ProgressiveImage } from '@/components/ProgressiveImage';
 
 const Index = () => {
   const navigate = useNavigate();
+  const [api, setApi] = useState<CarouselApi>();
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const heroImages = [
     {
       src: '/lovable-uploads/6e31e932-b01f-4f3a-9167-88a8cd1165d3.png',
       alt: 'Choice Lounge Garden Area',
-      title: 'Tranquil Garden Oasis',
-      subtitle: 'Escape to our peaceful garden area with stunning Lake Kivu views.'
+      title: 'The best and Affordable accommodation Near Brasserie',
+      subtitle: 'Welcome to Brasserie, We are waiting for for and ready to serve You'
     },
     {
       src: '/lovable-uploads/5b76a523-b1af-46f2-a831-44df082391b7.png',
@@ -155,17 +156,29 @@ const Index = () => {
   };
 
   useEffect(() => {
+    if (!api) {
+      return;
+    }
+
+    api.on("select", () => {
+      setCurrentSlide(api.selectedScrollSnap());
+    });
+  }, [api]);
+
+  useEffect(() => {
     const timer = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % heroImages.length);
+      if (api) {
+        api.scrollNext();
+      }
     }, 6000);
     return () => clearInterval(timer);
-  }, [heroImages.length]);
+  }, [api]);
 
   return (
     <div className="min-h-screen bg-background">
       {/* Hero Section */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
-        <Carousel className="w-full h-full" opts={{ loop: true }}>
+        <Carousel className="w-full h-full" opts={{ loop: true }} setApi={setApi}>
           <CarouselContent>
             {heroImages.map((image, index) => (
               <CarouselItem key={index}>
@@ -175,25 +188,28 @@ const Index = () => {
                     alt={image.alt}
                     className="w-full h-full object-contain"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-black/20" />
+                  {/* Enhanced Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-black/70 via-black/40 to-black/20" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-transparent to-black/30" />
                   
                   <div className="absolute inset-0 flex items-center justify-center">
                     <div className="text-center text-white px-4 max-w-4xl mx-auto animate-fade-in">
                       <div className="mb-8">
-                        <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-6">
-                          <span className="bg-gradient-to-r from-white via-white to-white/90 bg-clip-text text-transparent">
+                        <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-6 drop-shadow-2xl">
+                          <span className="bg-gradient-to-r from-white via-white to-white/95 bg-clip-text text-transparent">
                             Choice
                           </span>
                           <br />
-                          <span className="bg-gradient-to-r from-primary via-primary to-primary/80 bg-clip-text text-transparent">
+                          <span className="bg-gradient-to-r from-primary via-primary to-primary/90 bg-clip-text text-transparent">
                             Lounge
                           </span>
                         </h1>
                         
-                        <h2 className="text-2xl md:text-4xl font-light mb-4 opacity-95">
+                        <h2 className="text-2xl md:text-4xl font-light mb-4 opacity-100 drop-shadow-lg">
                           {image.title}
                         </h2>
-                        <p className="text-lg md:text-xl opacity-85 mb-8 max-w-3xl mx-auto leading-relaxed">
+                        <p className="text-lg md:text-xl opacity-95 mb-8 max-w-3xl mx-auto leading-relaxed drop-shadow-md">
                           {image.subtitle}
                         </p>
                       </div>
@@ -201,7 +217,7 @@ const Index = () => {
                       <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
                         <Button 
                           size="lg" 
-                          className="bg-primary hover:bg-primary/90 text-white px-8 py-6 text-lg font-semibold shadow-2xl w-full sm:w-auto"
+                          className="bg-primary hover:bg-primary/90 text-white px-8 py-6 text-lg font-semibold shadow-2xl w-full sm:w-auto drop-shadow-lg backdrop-blur-sm"
                           onClick={() => navigate('/rooms')}
                         >
                           Book a Room
@@ -211,7 +227,7 @@ const Index = () => {
                         <Button 
                           variant="outline" 
                           size="lg"
-                          className="border-2 border-white text-white hover:bg-white hover:text-primary backdrop-blur-sm px-8 py-6 text-lg font-semibold w-full sm:w-auto"
+                          className="border-2 border-white text-white hover:bg-white hover:text-primary backdrop-blur-md px-8 py-6 text-lg font-semibold w-full sm:w-auto drop-shadow-lg"
                           onClick={handleVirtualTour}
                         >
                           <Play className="mr-2 h-5 w-5" />
@@ -226,9 +242,9 @@ const Index = () => {
                       <button
                         key={i}
                         className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                          i === index ? 'bg-white scale-125' : 'bg-white/50 hover:bg-white/75'
+                          i === currentSlide ? 'bg-white scale-125' : 'bg-white/50 hover:bg-white/75'
                         }`}
-                        onClick={() => setCurrentSlide(i)}
+                        onClick={() => api?.scrollTo(i)}
                       />
                     ))}
                   </div>

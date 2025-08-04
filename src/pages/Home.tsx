@@ -18,22 +18,22 @@ const Home = () => {
 
   const testimonials = [
     {
-      name: "Sarah Johnson",
+      name: "Umukozi Wacu",
       rating: 5,
       comment: "An absolutely stunning place with incredible lake views. The staff was exceptional and the rooms were pristine.",
-      location: "Kigali, Rwanda"
+      location: "Gisenyi, Brasserie"
     },
     {
-      name: "Mark Davidson",
+      name: "Umukozi wa KABIRI",
       rating: 5,
       comment: "Perfect for a romantic getaway. The sunset views from our balcony were unforgettable. Highly recommended!",
-      location: "Kampala, Uganda"
+      location: "Gisenyi, Brasserie"
     },
     {
-      name: "Emma Wilson",
+      name: "Umukozi wa GATATU",
       rating: 5,
       comment: "The garden area is beautiful and so peaceful. Great for relaxation and photography. Will definitely return!",
-      location: "Nairobi, Kenya"
+      location: "Rubavu, Nyamyumba"
     }
   ];
 
@@ -44,7 +44,7 @@ const Home = () => {
         <div className="absolute inset-0 z-0">
           <img 
             src={heroImage} 
-            alt="Choice Lounge overlooking Lake Kivu" 
+            alt="The best and Affordable accommodation Near Brasserie" 
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-black/40"></div>
