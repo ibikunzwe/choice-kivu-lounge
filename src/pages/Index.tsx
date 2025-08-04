@@ -292,7 +292,7 @@ const Index = () => {
       <section className="py-20 px-4 bg-muted/30">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">Rooms & Rates</h2>
+            <h2 className="text-4xl md:text-5xl font-bold mb-6">Rooms & Rates (In RWF, Negotiable)</h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
               Choose from our selection of comfortable rooms, each designed for your perfect stay
             </p>
@@ -307,25 +307,56 @@ const Index = () => {
                     alt={room.name}
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                   />
-                  <div className="absolute top-4 right-4">
-                    <Badge className="bg-primary text-white">{room.price}</Badge>
-                  </div>
                 </div>
                 <CardContent className="p-6">
                   <h3 className="font-bold text-xl mb-3">{room.name}</h3>
-                  <div className="flex flex-wrap gap-2 mb-6">
+                  
+                  {/* Price */}
+                  <div className="mb-4">
+                    <p className="text-2xl font-bold text-primary mb-1">Starting from 25,000 RWF/night</p>
+                    <p className="text-sm text-muted-foreground">8,000 RWF/hour</p>
+                  </div>
+                  
+                  {/* Features */}
+                  <div className="flex flex-wrap gap-2 mb-4">
                     {room.features.map((feature, i) => (
                       <Badge key={i} variant="secondary" className="text-xs">
                         {feature}
                       </Badge>
                     ))}
                   </div>
+                  
+                  {/* Negotiable Price Note */}
+                  <div className="bg-accent/50 rounded-lg p-4 mb-4">
+                    <p className="text-sm text-muted-foreground mb-3 flex items-center">
+                      💬 Price is negotiable via call or WhatsApp chat
+                    </p>
+                    <div className="flex gap-2">
+                      <Button 
+                        variant="outline" 
+                        size="sm" 
+                        className="flex-1 text-xs"
+                        onClick={() => window.open('tel:+250796359524', '_self')}
+                      >
+                        📞 Call to Negotiate
+                      </Button>
+                      <Button 
+                        variant="outline" 
+                        size="sm" 
+                        className="flex-1 text-xs bg-green-50 hover:bg-green-100 text-green-700 border-green-200"
+                        onClick={handleWhatsApp}
+                      >
+                        📲 Chat on WhatsApp
+                      </Button>
+                    </div>
+                  </div>
+                  
                   <div className="flex gap-3">
                     <Button 
                       className="flex-1" 
                       onClick={() => navigate('/rooms')}
                     >
-                      View More
+                      View Details
                     </Button>
                     <Button 
                       variant="outline" 
