@@ -16,111 +16,167 @@ const Gallery = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Simulate loading gallery images
+    // Load gallery images from lovable-uploads
     const loadGalleryImages = () => {
       const galleryImages: GalleryImage[] = [
-        // Rooms
-        {
-          id: '1',
-          src: '/src/assets/modern-room.jpg',
-          title: 'Modern Deluxe Room',
-          category: 'rooms',
-          description: 'Spacious modern room with city view'
-        },
-        {
-          id: '2',
-          src: '/src/assets/hero-lake-kivu.jpg',
-          title: 'Lake Kivu View Room',
-          category: 'rooms',
-          description: 'Room with stunning Lake Kivu view'
-        },
-        // Exterior
-        {
-          id: '3',
-          src: '/src/assets/building-exterior.jpg',
-          title: 'Hotel Exterior',
-          category: 'exterior',
-          description: 'Main building exterior view'
-        },
-        {
-          id: '4',
-          src: '/src/assets/building-exterior-stairs.jpg',
-          title: 'Building Stairs',
-          category: 'exterior',
-          description: 'Elegant exterior staircase'
-        },
-        {
-          id: '5',
-          src: '/src/assets/buildings-complex.jpg',
-          title: 'Buildings Complex',
-          category: 'exterior',
-          description: 'Complete hotel complex view'
-        },
-        {
-          id: '6',
-          src: '/src/assets/exterior-wide-view.jpg',
-          title: 'Wide Exterior View',
-          category: 'exterior',
-          description: 'Panoramic view of the hotel'
-        },
-        // Facilities
-        {
-          id: '7',
-          src: '/src/assets/reception-desk.jpg',
-          title: 'Reception Desk',
-          category: 'facilities',
-          description: 'Modern reception and check-in area'
-        },
-        {
-          id: '8',
-          src: '/src/assets/reception-interior.jpg',
-          title: 'Reception Interior',
-          category: 'facilities',
-          description: 'Spacious reception interior'
-        },
-        {
-          id: '9',
-          src: '/src/assets/choice-lounge-buildings.jpg',
-          title: 'Choice Lounge',
-          category: 'facilities',
-          description: 'Comfortable lounge area'
-        },
-        {
-          id: '10',
-          src: '/src/assets/choice-lounge-exterior.jpg',
-          title: 'Lounge Exterior',
-          category: 'facilities',
-          description: 'Outdoor lounge area'
-        },
-        {
-          id: '11',
-          src: '/src/assets/garden-lounge.jpg',
-          title: 'Garden Lounge',
-          category: 'facilities',
-          description: 'Beautiful garden lounge area'
-        },
-        // Views
-        {
-          id: '12',
-          src: '/src/assets/lake-kivu-balcony-view.jpg',
-          title: 'Balcony View',
-          category: 'views',
-          description: 'Lake Kivu view from room balcony'
-        },
-        {
-          id: '13',
-          src: '/src/assets/area-overview.jpg',
-          title: 'Area Overview',
-          category: 'views',
-          description: 'Overview of the surrounding area'
-        },
-        {
-          id: '14',
-          src: '/src/assets/location-overview.jpg',
-          title: 'Location Overview',
-          category: 'views',
-          description: 'Strategic location overview'
-        },
+                 // Rooms & Accommodation
+         {
+           id: '1',
+           src: '/src/assets/room1.JPG',
+           title: 'Deluxe Room 1',
+           category: 'rooms',
+           description: 'Spacious deluxe room with modern amenities'
+         },
+         {
+           id: '2',
+           src: '/src/assets/room2.JPG',
+           title: 'Deluxe Room 2',
+           category: 'rooms',
+           description: 'Comfortable room with elegant design'
+         },
+         {
+           id: '3',
+           src: '/src/assets/room3.JPG',
+           title: 'Deluxe Room 3',
+           category: 'rooms',
+           description: 'Modern room with premium features'
+         },
+         {
+           id: '4',
+           src: '/src/assets/room5.JPG',
+           title: 'Deluxe Room 5',
+           category: 'rooms',
+           description: 'Spacious accommodation with lake views'
+         },
+         {
+           id: '5',
+           src: '/src/assets/room6.JPG',
+           title: 'Deluxe Room 6',
+           category: 'rooms',
+           description: 'Elegant room with contemporary design'
+         },
+         {
+           id: '6',
+           src: '/src/assets/room7.JPG',
+           title: 'Deluxe Room 7',
+           category: 'rooms',
+           description: 'Comfortable room with modern amenities'
+         },
+         {
+           id: '7',
+           src: '/src/assets/room8.JPG',
+           title: 'Deluxe Room 8',
+           category: 'rooms',
+           description: 'Premium room with excellent views'
+         },
+         {
+           id: '8',
+           src: '/src/assets/room9.JPG',
+           title: 'Deluxe Room 9',
+           category: 'rooms',
+           description: 'Spacious room with elegant furnishings'
+         },
+         {
+           id: '9',
+           src: '/src/assets/room10.JPG',
+           title: 'Deluxe Room 10',
+           category: 'rooms',
+           description: 'Modern room with comfort and style'
+         },
+         {
+           id: '10',
+           src: '/src/assets/room11.JPG',
+           title: 'Deluxe Room 11',
+           category: 'rooms',
+           description: 'Premium accommodation with lake views'
+         },
+         {
+           id: '11',
+           src: '/src/assets/room12.JPG',
+           title: 'Deluxe Room 12',
+           category: 'rooms',
+           description: 'Luxury room with stunning surroundings'
+         },
+                 // Views & Surroundings
+         {
+           id: '12',
+           src: '/src/assets/lake-view.JPG',
+           title: 'Lake View',
+           category: 'views',
+           description: 'Breathtaking view of Lake Kivu'
+         },
+         {
+           id: '13',
+           src: '/src/assets/sideview.JPG',
+           title: 'Side View',
+           category: 'views',
+           description: 'Side view of the property'
+         },
+         {
+           id: '14',
+           src: '/src/assets/roadside.JPG',
+           title: 'Roadside View',
+           category: 'views',
+           description: 'Roadside view of Choice Lounge'
+         },
+         {
+           id: '15',
+           src: '/src/assets/welcome.JPG',
+           title: 'Bralirwa View',
+           category: 'views',
+           description: 'Welcome view of the property'
+         },
+         // Exterior & Building
+         {
+           id: '16',
+           src: '/src/assets/garden.JPG',
+           title: 'Garden',
+           category: 'exterior',
+           description: 'Beautiful garden area'
+         },
+         {
+           id: '17',
+           src: '/src/assets/parking.JPG',
+           title: 'Parking',
+           category: 'exterior',
+           description: 'Parking area'
+         },
+         {
+           id: '18',
+           src: '/lovable-uploads/0a3290a9-0599-4978-aacf-a48cf81b6058.png',
+           title: 'Gets',
+           category: 'exterior',
+           description: 'Exterior view of the building'
+         },
+         // Facilities & Common Areas
+         {
+           id: '19',
+           src: '/src/assets/welcome.JPG',
+           title: 'Welcome',
+           category: 'facilities',
+           description: 'Welcome area and reception'
+         },
+         {
+           id: '20',
+           src: '/lovable-uploads/59fc69b5-7037-47f2-b683-1a341ff3108a.png',
+           title: 'Reception',
+           category: 'facilities',
+           description: 'Modern reception and check-in area'
+         },
+         {
+           id: '21',
+           src: '/lovable-uploads/5bfa8317-87af-48e8-9f73-8bdc38ffaecd.png',
+           title: 'Kitchen',
+           category: 'facilities',
+           description: 'Kitchen facilities'
+         },
+         {
+           id: '22',
+           src: '/lovable-uploads/6e31e932-b01f-4f3a-9167-88a8cd1165d3.png',
+           title: 'Saloon',
+           category: 'facilities',
+           description: 'Saloon area'
+         }
       ];
 
       setTimeout(() => {

@@ -54,10 +54,10 @@ const About = () => {
       {/* Hero Section */}
       <div className="bg-gradient-to-r from-primary/10 to-primary/5 py-16">
         <div className="max-w-4xl mx-auto px-4 text-center space-y-6">
-          <h1 className="text-4xl font-bold tracking-tight">About Hotel Booking</h1>
+          <h1 className="text-4xl font-bold tracking-tight">About Choice Lounge</h1>
           <p className="text-xl text-muted-foreground leading-relaxed">
-            For over two decades, we have been providing exceptional hospitality and 
-            creating memorable experiences for guests from around the world.
+            Located in the beautiful Nyamyumba/Brasserie area of Rubavu District, 
+            Choice Lounge offers modern accommodation with stunning Lake Kivu views.
           </p>
         </div>
       </div>
@@ -69,25 +69,26 @@ const About = () => {
             <h2 className="text-3xl font-bold">Our Story</h2>
             <div className="space-y-4 text-muted-foreground">
               <p>
-                Founded in 2000, Hotel Booking began as a small family-owned establishment 
-                with a vision to provide guests with more than just accommodation – we wanted 
-                to create a home away from home.
+                Choice Lounge was established to provide travelers with a modern, comfortable 
+                accommodation option in the beautiful Lake Kivu region. Our location in 
+                Nyamyumba/Brasserie offers the perfect blend of tranquility and accessibility.
               </p>
               <p>
-                Over the years, we've grown and evolved, but our core values remain unchanged. 
-                We believe that hospitality is an art, and every guest deserves to feel valued, 
-                comfortable, and cared for throughout their stay.
+                We believe that every guest deserves exceptional service and a memorable stay. 
+                Our rooms are designed with comfort and modern amenities in mind, ensuring 
+                that your time with us is both relaxing and enjoyable.
               </p>
               <p>
-                Today, we're proud to be a leading destination hotel, known for our exceptional 
-                service, beautiful accommodations, and commitment to sustainable tourism practices.
+                With stunning views of Lake Kivu and proximity to local attractions, 
+                Choice Lounge is the perfect base for exploring the beauty of Rubavu District 
+                and experiencing authentic Rwandan hospitality.
               </p>
             </div>
           </div>
           <div className="relative">
             <img
-              src="/src/assets/reception-interior.jpg"
-              alt="Hotel reception"
+              src="/src/assets/reception.JPG"
+              alt="Choice Lounge reception"
               className="rounded-lg shadow-lg w-full h-96 object-cover"
             />
           </div>
@@ -98,8 +99,8 @@ const About = () => {
           <div className="text-center space-y-4">
             <h2 className="text-3xl font-bold">Prime Location</h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              Strategically located with easy access to major attractions, 
-              business districts, and transportation hubs.
+              Located in the heart of Nyamyumba/Brasserie with stunning Lake Kivu views 
+              and easy access to local attractions.
             </p>
           </div>
           
@@ -115,27 +116,31 @@ const About = () => {
                 <div>
                   <h4 className="font-semibold mb-2">Address</h4>
                   <p className="text-muted-foreground">
-                    123 Hospitality Avenue<br />
-                    City Center, State 12345<br />
-                    Country
+                    Nyamyumba/Brasserie<br />
+                    Rubavu District<br />
+                    Rwanda
                   </p>
                 </div>
                 
                 <div>
                   <h4 className="font-semibold mb-2">Nearby Attractions</h4>
                   <ul className="space-y-1 text-muted-foreground">
-                    <li>• City Museum (0.5 km)</li>
-                    <li>• Central Park (0.8 km)</li>
-                    <li>• Shopping District (1.2 km)</li>
-                    <li>• Business Center (2.0 km)</li>
-                    <li>• Airport (15 km)</li>
+                    <li>• Lake Kivu Beaches (Walking distance)</li>
+                    <li>• Local Markets (0.5 km)</li>
+                    <li>• Boat Rides (0.8 km)</li>
+                    <li>• Hiking Trails (1.2 km)</li>
+                    <li>• Rubavu Town Center (2.0 km)</li>
                   </ul>
                 </div>
               </CardContent>
             </Card>
 
-            <div className="bg-muted rounded-lg h-80 flex items-center justify-center">
-              <p className="text-muted-foreground">Interactive Map Integration</p>
+            <div className="relative">
+              <img
+                src="/src/assets/lake-view.JPG"
+                alt="Lake Kivu view from Choice Lounge"
+                className="rounded-lg shadow-lg w-full h-80 object-cover"
+              />
             </div>
           </div>
         </section>
@@ -235,20 +240,20 @@ const About = () => {
         <section className="bg-muted rounded-lg p-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             <div>
-              <div className="text-3xl font-bold text-primary mb-2">25+</div>
-              <div className="text-muted-foreground">Years of Excellence</div>
+              <div className="text-3xl font-bold text-primary mb-2">12</div>
+              <div className="text-muted-foreground">Comfortable Rooms</div>
             </div>
             <div>
-              <div className="text-3xl font-bold text-primary mb-2">50+</div>
-              <div className="text-muted-foreground">Rooms & Suites</div>
+              <div className="text-3xl font-bold text-primary mb-2">24/7</div>
+              <div className="text-muted-foreground">Room Service</div>
             </div>
             <div>
-              <div className="text-3xl font-bold text-primary mb-2">10K+</div>
-              <div className="text-muted-foreground">Happy Guests</div>
+              <div className="text-3xl font-bold text-primary mb-2">100%</div>
+              <div className="text-muted-foreground">Lake Views</div>
             </div>
             <div>
-              <div className="text-3xl font-bold text-primary mb-2">4.8</div>
-              <div className="text-muted-foreground">Average Rating</div>
+              <div className="text-3xl font-bold text-primary mb-2">5.0</div>
+              <div className="text-muted-foreground">Guest Rating</div>
             </div>
           </div>
         </section>

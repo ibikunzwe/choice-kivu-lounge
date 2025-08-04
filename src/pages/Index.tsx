@@ -36,28 +36,34 @@ const Index = () => {
 
   const heroImages = [
     {
-      src: '/lovable-uploads/0849b1ad-cc06-4512-8eb7-940258e20b07.png',
-      alt: 'Choice Lounge Garden View',
-      title: 'Relax in Style by Lake Kivu',
-      subtitle: 'Your modern getaway in Nyamyumba/Brasserie with lake views, comfort, and tranquility.'
+      src: '/lovable-uploads/6e31e932-b01f-4f3a-9167-88a8cd1165d3.png',
+      alt: 'Choice Lounge Garden Area',
+      title: 'Tranquil Garden Oasis',
+      subtitle: 'Escape to our peaceful garden area with stunning Lake Kivu views.'
     },
     {
-      src: '/lovable-uploads/94a5a83c-e851-4ad2-9f13-03a961e676fb.png',
-      alt: 'Lake Kivu Sunset View',
-      title: 'Breathtaking Lake Views',
-      subtitle: 'Watch stunning sunsets over Lake Kivu from your private balcony.'
+      src: '/lovable-uploads/5b76a523-b1af-46f2-a831-44df082391b7.png',
+      alt: 'Choice Lounge Interior',
+      title: 'Modern Interior Design',
+      subtitle: 'Contemporary comfort meets Rwandan hospitality in every detail.'
     },
     {
-      src: '/lovable-uploads/59fc69b5-7037-47f2-b683-1a341ff3108a.png',
-      alt: 'Modern Reception Area',
-      title: 'Modern Comfort',
-      subtitle: 'Experience luxury amenities and warm Rwandan hospitality.'
+      src: '/lovable-uploads/2f6167db-cbce-460c-87f6-8a8baac608c4.png',
+      alt: 'Lake View Room',
+      title: 'Spectacular Lake Views',
+      subtitle: 'Wake up to breathtaking panoramas of Lake Kivu from your private room.'
     },
     {
-      src: '/lovable-uploads/3b651f93-4f0e-4417-ba7a-39c66ad3afb8.png',
-      alt: 'Choice Lounge Exterior',
-      title: 'Premium Location',
-      subtitle: 'Steps away from Lake Kivu shores in the heart of Rubavu District.'
+      src: '/lovable-uploads/893584b2-3d60-4053-b73c-90e265c46df7.png',
+      alt: 'Choice Lounge Exterior View',
+      title: 'Prime Lake Kivu Location',
+      subtitle: 'Located just steps from the shores of beautiful Lake Kivu.'
+    },
+    {
+      src: '/lovable-uploads/0a3290a9-0599-4978-aacf-a48cf81b6058.png',
+      alt: 'Choice Lounge Building',
+      title: 'Your Perfect Getaway',
+      subtitle: 'Experience luxury accommodation in the heart of Rubavu District.'
     }
   ];
 
@@ -167,7 +173,7 @@ const Index = () => {
                   <ProgressiveImage
                     src={image.src}
                     alt={image.alt}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-contain"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-black/20" />
                   
