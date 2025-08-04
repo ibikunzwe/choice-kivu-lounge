@@ -75,7 +75,7 @@ Details:
 - Guest Name: ${bookingData.guestName || 'Not provided'}
 - Email: ${bookingData.guestEmail || 'Not provided'}
 - Phone: ${bookingData.guestPhone || 'Not provided'}
-- Estimated Total: $${total} (negotiable)
+- Estimated Total: RWF ${total} (negotiable)
 - Special Requests: ${bookingData.specialRequests || 'None'}
 
 Please confirm availability and final pricing. Thank you!`;
@@ -93,13 +93,13 @@ Please confirm availability and final pricing. Thank you!`;
           <div className="flex items-center space-x-3 p-3 border rounded-lg">
             <RadioGroupItem value="daily" id="daily" />
             <Label htmlFor="daily" className="text-sm">
-              Daily (${room.daily_rate}/day - Negotiable)
+              Daily (RWF {room.daily_rate}/day - Negotiable)
             </Label>
           </div>
           <div className="flex items-center space-x-3 p-3 border rounded-lg">
             <RadioGroupItem value="hourly" id="hourly" />
             <Label htmlFor="hourly" className="text-sm">
-              Hourly (${room.hourly_rate}/hour - Negotiable)
+              Hourly (RWF {room.hourly_rate}/hour - Negotiable)
             </Label>
           </div>
         </RadioGroup>
@@ -246,7 +246,7 @@ Please confirm availability and final pricing. Thank you!`;
           <div className="flex justify-between items-center text-xl font-bold">
             <span>Estimated Total:</span>
             <div className="text-right">
-              <span>${calculateTotal()}</span>
+              <span>RWF {calculateTotal()}</span>
               <p className="text-sm text-muted-foreground font-normal">Prices are negotiable</p>
             </div>
           </div>

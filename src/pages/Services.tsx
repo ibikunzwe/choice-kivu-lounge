@@ -73,28 +73,28 @@ const Services = () => {
       title: "Premium Coffee & Tea",
       description: "Artisan coffee blends and premium tea selections",
       features: ["Ethiopian Coffee", "English Breakfast Tea", "Herbal Infusions", "Espresso & Cappuccino"],
-      pricing: "Starting from $3"
+      pricing: "Starting from RWF 3"
     },
     {
       icon: <GlassWater className="h-6 w-6" />,
       title: "Fresh Juices & Smoothies",
       description: "Locally sourced fruits turned into refreshing beverages",
       features: ["Tropical Fruit Juices", "Green Smoothies", "Fresh Squeezed Orange", "Seasonal Specials"],
-      pricing: "From $4"
+      pricing: "From RWF 4"
     },
     {
       icon: <Wine className="h-6 w-6" />,
       title: "Soft Drinks & Water",
       description: "Refreshing beverages to keep you hydrated",
       features: ["Local Spring Water", "International Sodas", "Energy Drinks", "Sparkling Water"],
-      pricing: "$2 - $5"
+      pricing: "RWF 2 - RWF 5"
     },
     {
       icon: <Sparkles className="h-6 w-6" />,
       title: "Special Beverage Packages",
       description: "Curated beverage experiences for your stay",
       features: ["Welcome Drink Package", "All-Day Coffee Package", "Healthy Juice Cleanse", "Custom Combinations"],
-      pricing: "From $15/day"
+      pricing: "From RWF 15/day"
     }
   ];
 

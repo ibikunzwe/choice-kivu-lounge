@@ -232,7 +232,7 @@ const Bookings = () => {
                 </CardHeader>
                 <CardContent>
                   <div className="text-2xl font-bold">
-                    ${bookings.reduce((sum, booking) => sum + Number(booking.total_cost), 0)}
+                    RWF {bookings.reduce((sum, booking) => sum + Number(booking.total_cost), 0)}
                   </div>
                 </CardContent>
               </Card>
@@ -271,7 +271,7 @@ const Bookings = () => {
                           </p>
                         </div>
                         <div className="text-right">
-                          <div className="text-2xl font-bold">${booking.total_cost}</div>
+                          <div className="text-2xl font-bold">RWF {booking.total_cost}</div>
                           <div className="text-sm text-muted-foreground capitalize">
                             {booking.booking_type} booking
                           </div>

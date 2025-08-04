@@ -91,19 +91,19 @@ const Index = () => {
   const rooms = [
     {
       name: 'Deluxe Lake View Room',
-      price: 'From $120/night',
+      price: 'From RWF 120/night',
       features: ['Lake View', 'Private Balcony', 'King Bed', 'Free Wi-Fi'],
       image: '/lovable-uploads/2f6167db-cbce-460c-87f6-8a8baac608c4.png'
     },
     {
       name: 'Garden Suite',
-      price: 'From $85/night',
+      price: 'From RWF 85/night',
       features: ['Garden View', 'Spacious', 'Queen Bed', 'Mini Bar'],
       image: '/lovable-uploads/6b1804d8-13b4-45b9-9b41-534077a484ab.png'
     },
     {
       name: 'Standard Room',
-      price: 'From $65/night',
+      price: 'From RWF 65/night',
       features: ['Cozy Space', 'Double Bed', 'Modern Bath', 'AC'],
       image: '/lovable-uploads/4dc3774e-ba4e-4de5-85ce-5004b6d09f34.png'
     }

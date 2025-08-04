@@ -308,7 +308,7 @@ export const AdminRoomManager = () => {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
-                    <Label htmlFor="daily_rate">Daily Rate ($)</Label>
+                    <Label htmlFor="daily_rate">Daily Rate (RWF)</Label>
                     <Input
                       id="daily_rate"
                       type="number"
@@ -321,7 +321,7 @@ export const AdminRoomManager = () => {
                   </div>
                   
                   <div>
-                    <Label htmlFor="hourly_rate">Hourly Rate ($)</Label>
+                    <Label htmlFor="hourly_rate">Hourly Rate (RWF)</Label>
                     <Input
                       id="hourly_rate"
                       type="number"

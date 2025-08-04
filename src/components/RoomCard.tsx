@@ -93,14 +93,14 @@ export const RoomCard = ({ room }: RoomCardProps) => {
             <div className="flex justify-between items-center">
               <span className="text-sm font-medium">Daily Rate:</span>
               <div className="text-right">
-                <span className="font-bold text-lg">${room.daily_rate}</span>
+                <span className="font-bold text-lg">RWF {room.daily_rate}</span>
                 <Badge variant="outline" className="ml-2 text-xs">Negotiable</Badge>
               </div>
             </div>
             <div className="flex justify-between items-center">
               <span className="text-sm font-medium">Hourly Rate:</span>
               <div className="text-right">
-                <span className="font-bold text-lg">${room.hourly_rate}</span>
+                <span className="font-bold text-lg">RWF {room.hourly_rate}</span>
                 <Badge variant="outline" className="ml-2 text-xs">Negotiable</Badge>
               </div>
             </div>

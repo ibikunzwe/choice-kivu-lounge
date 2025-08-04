@@ -108,7 +108,7 @@ export const AdminStats = () => {
       icon: <DollarSign className="h-5 w-5" />,
       color: 'text-emerald-600',
       bgColor: 'bg-emerald-50',
-      suffix: '$',
+      suffix: 'RWF',
       prefix: true,
     },
   ];

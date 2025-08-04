@@ -132,7 +132,7 @@ export const AdminBookingManager = () => {
         new Date(booking.check_in).toLocaleDateString(),
         new Date(booking.check_out).toLocaleDateString(),
         booking.status,
-        `$${booking.total_cost}`,
+        `RWF ${booking.total_cost}`,
         booking.booking_type
       ])
     ].map(row => row.join(',')).join('\n');
@@ -248,7 +248,7 @@ export const AdminBookingManager = () => {
           </div>
           <div className="bg-muted/50 p-4 rounded-lg text-center">
             <div className="text-2xl font-bold text-blue-600">
-              ${bookings.reduce((sum, b) => sum + (Number(b.total_cost) || 0), 0).toLocaleString()}
+              RWF {bookings.reduce((sum, b) => sum + (Number(b.total_cost) || 0), 0).toLocaleString()}
             </div>
             <div className="text-sm text-muted-foreground">Total Revenue</div>
           </div>
@@ -306,7 +306,7 @@ export const AdminBookingManager = () => {
                     </Badge>
                   </TableCell>
                   <TableCell>
-                    <div className="font-medium">${booking.total_cost}</div>
+                    <div className="font-medium">RWF {booking.total_cost}</div>
                   </TableCell>
                   <TableCell>
                     <div className="flex items-center gap-1">
